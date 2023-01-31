@@ -5,6 +5,7 @@
 		{ id: 3, name: 'My Resume', url: '/myresume' }
 	];
 	export let changeLinkToHome = 0;
+	export let homeText = 'home';
 	let mgithub = 'https://github.com/unknown009d';
 	let mlinkedin = 'https://linkedin.com/in/drubajyotidebnath';
 </script>
@@ -37,7 +38,7 @@
 	<div class="mid">
 		{#each dlinks as link (link.id)}
 			{#if link.id == changeLinkToHome}
-				<a href="/">Home</a>
+				<a href="/">{homeText}</a>
 			{:else}
 				<a href={link.url}>{link.name}</a>
 			{/if}
@@ -47,12 +48,12 @@
 	<div class="end">
 		<p>
 			Let's connect on
-			<a href={mgithub} target="_blank" rel="noreferrer" >
-				<span class="icon i-github"></span>
+			<a href={mgithub} target="_blank" rel="noreferrer">
+				<span class="icon i-github" />
 			</a>
 			/
 			<a href={mlinkedin} target="_blank" rel="noreferrer">
-				<span class="icon i-linkedin"></span>
+				<span class="icon i-linkedin" />
 			</a>
 		</p>
 	</div>
@@ -63,6 +64,7 @@
 		transform: scale(0.7);
 	}
 	header {
+		width: 100%;
 		padding: 1rem 0;
 		background-color: transparent;
 		margin-bottom: 2rem;
@@ -87,7 +89,7 @@
 		font-weight: 800;
 	}
 	.mid {
-		flex: 3;
+		flex: 2;
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
@@ -119,7 +121,7 @@
 	}
 	.mid a:focus::after,
 	.mid a:hover::after {
-		width: 20px;
+		width: 15px;
 	}
 	.end {
 		flex: 1;
@@ -130,6 +132,7 @@
 		flex-direction: row;
 		justify-content: flex-end;
 		align-items: center;
+		color: rbg(var(--fg-color), 0.8);
 	}
 	.end p a {
 		position: relative;
@@ -146,8 +149,22 @@
 		background-color: rgba(var(--primary-color), 1);
 		transition: var(--focus-transition);
 	}
+	.end p a .icon {
+		background-color: rgba(var(--fg-color), 0.8);
+	}
+	.end p a:focus .icon,
+	.end p a:hover .icon {
+		background-color: rgba(var(--fg-color), 1);
+		filter: brightness(150%);
+	}
 	.end p a:focus::before,
 	.end p a:hover::before {
 		width: 60%;
+	}
+	@media only screen and (max-width: 612px) {
+		header{
+			/* display: none; */
+			flex-direction: column;
+		}
 	}
 </style>

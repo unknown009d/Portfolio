@@ -1,20 +1,121 @@
 <script>
+	// @ts-nocheck
+
 	import Landing from './Landing.svelte';
+	import HeadDoc from './HeadDoc.svelte';
+	import Myedu from './Myedu.svelte';
+	import ScrollDown from './scrollDown.svelte';
+	import SkillsPage from './SkillsPage.svelte';
+	import SectionH from './SectionH.svelte';
+	import Certification from './Certification.svelte';
+	import Projects from './Projects.svelte';
+	import Contact from './Contact.svelte';
+
+	let scrolled = 0;
+	let backgroundImagePosY = 70; // Default value from styles
+	let parallexAmount = 0.08; // Increase to make the parallex more
+
+	let skill = [
+		{
+			category: 'Core Programming',
+			skills: [
+				{ name: 'C', level: 'Pro' },
+				{ name: 'C++', level: 'Pro' },
+				{ name: 'Python', level: 'Pro' },
+				{ name: 'Java', level: 'Noobest' },
+				{ name: 'MySQL', level: 'Noob' }
+			]
+		}
+	];
 </script>
 
-<svelte:head>
-	<title>Drubajyoti Debnath</title>
-</svelte:head>
+<svelte:window bind:scrollY={scrolled} />
 
-<main>
-	<section class="full-page">
-		<Landing />
-	</section>
-</main>
+<HeadDoc />
+
+<section
+	class="page p-cover"
+	id="CoverInitial"
+	style="background-position-y: {backgroundImagePosY - scrolled * parallexAmount}%;"
+>
+	<Landing />
+</section>
+<section class="page">
+	<Myedu />
+</section>
+
+<section class="p-certi">
+	<Certification />
+</section>
+
+<section class="skillsPage">
+	<SkillsPage />
+</section>
+
+<ScrollDown />
+
+<section class="projectsPage" id="works">
+	<Projects />
+</section>
+
+<section class="page p-padding">
+	<Contact />
+</section>
 
 <style>
-    .full-page{
-        background: linear-gradient(to top, rgb(var(--bg-color))20%, rgba(var(--bg-color), 0.7) 110%), 
-                    url('images/Background.jpeg') 7% 80%/150% no-repeat;
-    }
+	.projectsPage {
+		margin-top: 3.2rem;
+		padding-bottom: 8rem;
+		overflow: hidden;
+	}
+	.p-certi {
+		margin-bottom: 3.2rem;
+	}
+	@keyframes welcome {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+
+	#CoverInitial {
+		background: linear-gradient(to top, rgb(var(--bg-color)) 20%, rgba(var(--bg-color), 0.7) 110%),
+			url('../lib/images/Background.jpeg') 0%/150% no-repeat;
+		background-position-y: 70%;
+		background-position-x: 7%;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: space-between;
+		width: 100%;
+		opacity: 0;
+		animation: welcome 800ms ease 600ms forwards;
+	}
+	@media only screen and (max-width: 612px) {
+		#CoverInitial {
+			justify-content: space-between;
+			gap: 2rem;
+			background-size: 400%;
+			background-position: 58% 70%;
+			justify-content: space-between;
+		}
+		.p-cover {
+			max-height: initial;
+			height: initial;
+		}
+	}
+
+	/* @media (prefers-color-scheme: light) {
+		#CoverInitial {
+			background: linear-gradient(
+					to top,
+					rgb(var(--bg-color)) 10%,
+					rgba(var(--bg-color), 0.8),
+					rgba(var(--bg-color), 1) 100%
+				),
+				url('../lib/images/Background_light_blurred.jpeg') 0%/150% no-repeat;
+		}
+	} */
 </style>

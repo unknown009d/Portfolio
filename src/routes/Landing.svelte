@@ -1,11 +1,13 @@
 <script>
 	import Header from './Header.svelte';
+	import WaveHand from '$lib/images/Hand.svg';
 </script>
 
 <Header />
 <div class="landing-content">
 	<h1 class="normal-heading">
-		Hey there <img src="Hand.svg" class="wave-icon" alt="👋🏽" />
+		Hey there
+		<img src={WaveHand} id="wi" class="wave-icon" alt="👋🏽" />
 	</h1>
 	<h1 class="fancy-font">I’m Drubajyoti Debnath</h1>
 	<p class="small-description">
@@ -18,29 +20,63 @@
 </div>
 
 <style>
-	.landing-content{
+	.landing-content {
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;
 		align-items: flex-start;
 		height: 500px;
-		margin-bottom: 2rem;
+		padding: 2rem 0;
 	}
 	.normal-heading {
 		font-family: 'Raleway', 'Inter', 'Roboto', sans-serif;
 		font-weight: 800;
 		margin-bottom: 0.4rem;
 	}
-	h1{
+	h1 {
 		font-size: 3.5rem;
 	}
 	.small-description {
 		line-height: 169%;
-		margin-top: 1.5rem;
+		margin-top: 2.5rem;
 		font-size: 1.2rem;
 	}
 	.wave-icon {
 		width: 72px;
 		margin: -8px;
+	}
+	@keyframes wave {
+		0% {
+			transform: rotate(0deg) scale(1);
+		}
+		10% {
+			transform: rotate(16deg) scale(1.1);
+		}
+		20% {
+			transform: rotate(-6deg) scale(1.1);
+		}
+		30% {
+			transform: rotate(16deg) scale(1.1);
+		}
+		40% {
+			transform: rotate(-4deg) scale(1.1);
+		}
+		50% {
+			transform: rotate(16deg) scale(1.1);
+		}
+		60% {
+			transform: rotate(0deg) scale(1);
+		}
+		100% {
+			transform: rotate(0deg) scale(1);
+		}
+	}
+	.wave-icon:hover,
+	.wave-icon:focus {
+		animation: wave 2.5s ease-out;
+		transform-origin: 75% 85%;
+		cursor: none;
+	}
+	@media only screen and (max-width: 612px) {
 	}
 </style>
