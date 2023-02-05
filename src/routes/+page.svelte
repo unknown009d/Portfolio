@@ -13,7 +13,7 @@
 
 	let scrolled = 0;
 	let backgroundImagePosY = 70; // Default value from styles
-	let parallexAmount = 0.08; // Increase to make the parallex more
+	let windowSize = 0;
 
 	let skill = [
 		{
@@ -29,17 +29,19 @@
 	];
 </script>
 
-<svelte:window bind:scrollY={scrolled} />
+<svelte:window bind:scrollY={scrolled} bind:innerWidth={windowSize} />
 
 <HeadDoc />
 
 <section
 	class="page p-cover"
 	id="CoverInitial"
-	style="background-position-y: {backgroundImagePosY - scrolled * parallexAmount}%;"
+	style="background-position-y: {backgroundImagePosY -
+		scrolled * (windowSize > 612 ? 0.08 : windowSize > 450 ? 0.06 : 0.04)}%;"
 >
 	<Landing />
 </section>
+
 <section class="page">
 	<Myedu />
 </section>
@@ -93,6 +95,12 @@
 		opacity: 0;
 		animation: welcome 800ms ease 600ms forwards;
 	}
+	@media only screen and (max-width: 950px) {
+		#CoverInitial {
+			background-size: 250%;
+			background-position-x: 38%;
+		}
+	}
 	@media only screen and (max-width: 612px) {
 		#CoverInitial {
 			justify-content: space-between;
@@ -104,6 +112,12 @@
 		.p-cover {
 			max-height: initial;
 			height: initial;
+		}
+	}
+	@media only screen and (max-width: 450px) {
+		#CoverInitial {
+			background-size: 600%;
+			background-position: 58% 70%;
 		}
 	}
 

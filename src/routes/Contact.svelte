@@ -22,7 +22,7 @@
 		<div class="cd-img"><span class="icon i-lg i-github_lg" /></div>
 		<div class="cd-content">
 			<h5>Github</h5>
-			<a href="https://github.com/unknown009d/" target="_blank" rel="noreferrer">
+			<a href="https://github.com/unknown009d/" target="_blank" rel="noreferrer" class="txtWrap">
 				https://github.com/unknown009d/
 			</a>
 		</div>
@@ -31,7 +31,12 @@
 		<div class="cd-img"><span class="icon i-lg i-linkedin_lg" /></div>
 		<div class="cd-content">
 			<h5>LinkedIn</h5>
-			<a href="https://www.linkedin.com/in/drubajyotidebnath/" target="_blank" rel="noreferrer">
+			<a
+				href="https://www.linkedin.com/in/drubajyotidebnath/"
+				target="_blank"
+				rel="noreferrer"
+				class="txtWrap"
+			>
 				https://www.linkedin.com/in/drubajyotidebnath/
 			</a>
 		</div>
@@ -43,15 +48,15 @@
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<div class="cxtras">
 				<p
-					class="copied-text"
+					class="txtWrap copied-text"
 					on:click={(event) => {
 						copyToClip(event);
 					}}
 				>
-					drubajyotidebnath@gmail.com
+					vbunitynet@gmail.com
 				</p>
 				<!-- svelte-ignore a11y-missing-content -->
-				<a href="mailto:drubajyotidebnath@gmail.com" class="linkBtn">
+				<a href="mailto:vbunitynet@gmail.com" class="linkBtn">
 					<span class="icon i-externalLink" />
 				</a>
 			</div>
@@ -64,7 +69,7 @@
 			<div class="cxtras">
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<p
-					class="copied-text"
+					class="txtWrap copied-text"
 					on:click={(event) => {
 						copyToClip(event);
 					}}
@@ -79,6 +84,12 @@
 </div>
 
 <style>
+	.txtWrap {
+		width: 100%;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+	}
 	.cd-container {
 		background-color: transparent;
 		padding: 2rem 0;
@@ -140,7 +151,37 @@
 		width: 26px;
 		border-radius: 4px;
 	}
-	.cxtras .linkBtn:hover .i-externalLink{
+	.cxtras .linkBtn:hover .i-externalLink {
 		background-color: rgba(var(--fg-color), 1);
+	}
+	.cxtras:focus,
+	.cxtras:focus-within,
+	.cxtras:focus-visible {
+		background-color: rgb(var(--primary-color), 0.2);
+	}
+	.cd-container .cd-item .cd-content a {
+		border-bottom: 2px dashed rgba(var(--primary-color), 0.4);
+	}
+	@media only screen and (max-width: 612px) {
+		.cd-container .cd-item .cd-content a {
+			text-decoration: underline;
+			border-bottom: none;
+		}
+		.cd-container .cd-item .cd-content a,
+		.cd-container .cd-item .cd-content p {
+			font-size: initial;
+		}
+		.cd-container .cd-item {
+			padding: 0.5rem 0;
+			margin-bottom: 1.5rem;
+			display: block;
+		}
+		.cd-container .cd-item .cd-img {
+			width: 42px;
+			height: 42px;
+			min-height: 24px;
+			min-width: 24px;
+			display: none;
+		}
 	}
 </style>

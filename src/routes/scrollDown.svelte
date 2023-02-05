@@ -45,19 +45,31 @@
 		transform: translateY(-150px);
 		left: calc(100% - 100px);
 		height: 0px;
-		animation: scrollDown 4s ease infinite;
+		/* animation: scrollDown 4s ease infinite; */
 		cursor: pointer;
 		transition: opacity 400ms ease-out 400ms;
 		z-index: 100;
 		mix-blend-mode: difference;
 	}
+	.scroll-down-component:hover,
+	.scroll-down-component:focus,
+	.scroll-down-component:focus-visible,
+	.scroll-down-component:focus-within {
+		animation: scrollDown 3s ease infinite;
+		box-shadow: 0 0 0 2px rgb(var(--primary-color));
+	}
 	.scroll-down-component:hover {
-		animation: none;
+		box-shadow: none;
 	}
 	.scroll-down-component svg {
 		width: 100%;
 	}
 	.scroll-down-component svg path {
 		fill: rgb(var(--primary-color));
+	}
+	@media only screen and (max-width: 612px) {
+		.scroll-down-component{
+			display: none;
+		}
 	}
 </style>

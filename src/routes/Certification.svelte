@@ -36,7 +36,7 @@
 
 <div class="page">
 	<SectionH
-		heading="Certificates"
+		heading="Endorsements"
 		sub="Here are some of the certification that I have achieved..."
 	/>
 </div>
@@ -54,7 +54,7 @@
 		</button>
 	</div>
 	{#each certificates as { id, img, title, issued }}
-		<div class="certi">
+		<div class="certi" tabindex="-1">
 			<ImgText img="{imageLocation}{img}" {title} sub={issued} />
 		</div>
 	{/each}
@@ -75,6 +75,7 @@
 	.certificate-container {
 		--area-of-work: 0rem 10%;
 		display: flex;
+		flex-direction: row;
 		align-items: center;
 		justify-content: flex-start;
 		gap: 1rem;
@@ -122,7 +123,7 @@
 		display: grid;
 		place-items: center;
 		transform: translateY(-25px);
-		opacity: 0;
+		opacity: 1;
 		position: relative;
 		transition: opacity 400ms ease 800ms;
 	}
@@ -140,7 +141,41 @@
 		opacity: 0;
 		transition: opacity 400ms ease;
 	}
-	.certificate-container .scroll-btns:hover::after {
+	@keyframes moveAside{
+		0%{
+			transform: translate(0px, -25px);
+		}
+		10%{
+			transform: translate(0px , -25px);
+		}
+		40%{
+			transform: translate(10px, -25px);
+		}
+		50%{
+			transform: translate(0px, -25px);
+		}
+		60%{
+			transform: translate(10px, -25px);
+		}
+		80%{
+			transform: translate(0px, -25px);
+		}
+		100%{
+			transform: translate(0px, -25px);
+		}
+	}
+	.certificate-container .scroll-btns:focus,
+	.certificate-container .scroll-btns:focus-within,
+	.certificate-container .scroll-btns:focus-visible
+	{
+		box-shadow: 0 0 0 2px rgb(var(--bg-color));
+		animation: moveAside 3000ms ease infinite;
+	}
+	.certificate-container .scroll-btns:hover::after,
+	.certificate-container .scroll-btns:focus::after,
+	.certificate-container .scroll-btns:focus-within,
+	.certificate-container .scroll-btns:focus-visible
+	{
 		opacity: 1;
 		transition: opacity 400ms ease 400ms;
 	}

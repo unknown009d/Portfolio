@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	import SectionH from './SectionH.svelte';
 
 	let imageLocation = '../src/lib/images/'; //TODO: Change of this doesn't work in build
@@ -27,23 +29,28 @@
 	];
 </script>
 
-<div class="education p-padding">
-	<SectionH heading="Qualification" sub="Currently I'm pursuing B.Tech in CSE" />
-	<div class="school-container">
-		{#each schoolsData as sData (sData.id)}
-			<div class="school">
-				<div class="school-img">
-					<img src="{imageLocation}{sData.img}" alt="School Logo" />
+{#if schoolsData.length > 0}
+	<div class="education p-padding">
+		<SectionH
+			heading="Academic Experience"
+			sub="Educational background in a reverse-chronological order"
+		/>
+		<div class="school-container">
+			{#each schoolsData as sData (sData.id)}
+				<div class="school">
+					<div class="school-img">
+						<img src="{imageLocation}{sData.img}" alt="School Logo" />
+					</div>
+					<div class="school-content">
+						<p class="name">{sData.name}</p>
+						<p class="course">{sData.course}</p>
+						<small class="duration">{sData.duration}</small>
+					</div>
 				</div>
-				<div class="school-content">
-					<p class="name">{sData.name}</p>
-					<p class="course">{sData.course}</p>
-					<small class="duration">{sData.duration}</small>
-				</div>
-			</div>
-		{/each}
+			{/each}
+		</div>
 	</div>
-</div>
+{/if}
 
 <style>
 	.education {
@@ -127,6 +134,7 @@
 		font-size: 0.8rem;
 		opacity: 0.8;
 		margin-top: auto;
+		padding-top: 0.5rem;
 	}
 	@media screen and (max-width: 612px) {
 		.school-container .school {
@@ -139,5 +147,17 @@
 		.school-container .school .school-content small.duration {
 			margin-top: 0.8rem;
 		}
+		.school-container .school .school-content .name {
+			font-size: 1rem;
+		}
+		.school-container .school .school-content .course {
+			font-size: 0.8rem;
+		}
+		.school-container {
+			margin: 1rem 0;
+		}
+	.school-container::before {
+		left: 10px;
+	}
 	}
 </style>

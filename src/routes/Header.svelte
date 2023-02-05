@@ -1,8 +1,8 @@
 <script>
 	export let dlinks = [
 		{ id: 1, name: 'Projects', url: '/projects' },
-		{ id: 2, name: 'About Me', url: '/aboutme' },
-		{ id: 3, name: 'My Resume', url: '/myresume' }
+		{ id: 2, name: 'AboutMe', url: '/aboutme' },
+		{ id: 3, name: 'MyResume', url: '/myresume' }
 	];
 	export let changeLinkToHome = 0;
 	export let homeText = 'home';
@@ -36,18 +36,21 @@
 		<h1>IND</h1>
 	</div>
 	<div class="mid">
-		{#each dlinks as link (link.id)}
+		{#each dlinks as link, index}
 			{#if link.id == changeLinkToHome}
 				<a href="/">{homeText}</a>
 			{:else}
 				<a href={link.url}>{link.name}</a>
+			{/if}
+			{#if index + 1 < dlinks.length}
+				<span class="seperator">|</span>
 			{/if}
 		{/each}
 	</div>
 
 	<div class="end">
 		<p>
-			Let's connect on
+			Let's&nbsp;connect&nbsp;on
 			<a href={mgithub} target="_blank" rel="noreferrer">
 				<span class="icon i-github" />
 			</a>
@@ -101,13 +104,13 @@
 		text-decoration: none;
 		font-weight: 700;
 		text-transform: uppercase;
-		border-left: 3px solid rgba(var(--fg-color), 0.6);
-		padding-left: 1rem;
+		padding: 0.8rem 1rem;
+		/* border-left: 3px solid rgba(var(--fg-color), 0.6); */
+		/* padding-left: 1rem; */
 		position: relative;
 	}
 	.mid a:first-child {
 		border-left: none;
-		padding-left: 0;
 	}
 	.mid a::after {
 		content: '';
@@ -122,6 +125,12 @@
 	.mid a:focus::after,
 	.mid a:hover::after {
 		width: 15px;
+	}
+	.mid .seperator {
+		font-weight: 900;
+		color: rgba(var(--fg-color), 0.6);
+		user-select: none;
+		pointer-events: none;
 	}
 	.end {
 		flex: 1;
@@ -161,10 +170,52 @@
 	.end p a:hover::before {
 		width: 60%;
 	}
-	@media only screen and (max-width: 612px) {
-		header{
-			/* display: none; */
+	@media only screen and (max-width: 1190px) {
+		.mid a {
+			padding: 0.4rem;
+		}
+		.start {
+			flex: 0;
+		}
+		.mid{
+			flex: 0;
+		}
+		.end{
+			flex: 0;
+		}
+	}
+	@media only screen and (max-width: 950px) {
+		header {
 			flex-direction: column;
+			gap: 1.4rem;
+		}
+		.mid{
+			font-size: 1.2rem;
+		}
+	}
+	@media only screen and (max-width: 650px) {
+		.mid{
+			font-size: 1rem;
+		}
+	}
+	@media only screen and (max-width: 450px) {
+		header{
+			align-items: flex-start;
+			position: relative;
+		}
+		.mid{
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0;
+		}
+		.mid span.seperator{
+			transform: rotate(90deg) translateY(-15px);
+		}
+		.end{
+			position: absolute;
+			right: 0;
+			top: 0;
+			transform: rotate(-90deg) translate(-110px, 300%);
 		}
 	}
 </style>

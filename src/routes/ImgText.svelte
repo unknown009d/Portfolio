@@ -4,18 +4,49 @@
 	export let title = 'Title Here';
 	export let sub = 'Subtitle here...';
 	export let img = '';
+	let openImage = (event) => {
+		if (event.target.style.position == '') {
+			let elementPosition = event.target.getBoundingClientRect();
+			let elementWidth = event.target.offsetWidth;
+			let elementHeight = event.target.offsetHeight;
+			event.target.style = `
+				z-index: 101;
+				position: fixed; 
+				top: ${elementPosition.top}px; 
+				left: ${elementPosition.left}px;
+				right: ${elementPosition.right}px;
+				bottom: ${elementPosition.bottom}px;
+				width: ${elementWidth}px;
+				height: ${elementHeight}px;
+    			box-sizing: border-box;
+				`;
+			event.target.classList.add('fullscreen-preview');
+			event.target.parentNode.nextElementSibling.style.opacity = 0;
+			event.target.parentNode.nextElementSibling.style.paddingTop = '15rem';
+		} else {
+			event.target.classList.add('remove-preview');
+			setTimeout(() => {
+				event.target.style = '';
+				event.target.classList.remove('fullscreen-preview');
+				event.target.classList.remove('remove-preview');
+				event.target.parentNode.nextElementSibling.style.opacity = 1;
+				event.target.parentNode.nextElementSibling.style.paddingTop = '';
+			}, 600);
+		}
+	};
 </script>
 
-<div class="imgText-container">
+<div class="imgText-container" tabindex="-1">
 	<button
 		class="imgHolder"
 		on:click={(event) => {
-			event.target.classList.toggle('fullscreen-preview');
+			openImage(event);
 		}}
+		tabindex="-1"
 	>
 		<img src={img} alt="Certification of {title}" />
 	</button>
-	<div class="content">
+	<div class="content" tabindex="-1">
 		<h4 class="txtWrap1">{title}</h4>
 		<p>{sub}</p>
 	</div>
@@ -72,6 +103,7 @@
 		justify-content: flex-start;
 		align-items: center;
 		gap: 0.2rem;
+		transition: opacity 400ms ease;
 	}
 
 	.imgText-container .content h4 {

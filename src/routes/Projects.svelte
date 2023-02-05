@@ -8,14 +8,15 @@
 	let initialValue = 250;
 	let parallexAmount = 0.08; // Increase to make the parallex more
 	let parallexStyle = (parallexCalculated) => {
+		if (windowSize <= 750) {
+			parallexCalculated /= 2;
+			parallexCalculated += 30;
+		}
 		return 'transform: rotate(2deg) scale(1.2) translate(' + parallexCalculated + 'px, 75px);';
 	};
 </script>
 
-<svelte:window
-	bind:scrollY={scrolled}
-	bind:innerWidth={windowSize}
-/>
+<svelte:window bind:scrollY={scrolled} bind:innerWidth={windowSize} />
 
 <div class="page p-padding">
 	<SectionH
@@ -26,9 +27,7 @@
 
 <div
 	class="project-container"
-	style={windowSize > 612
-		? parallexStyle(initialValue - parallexAmount * scrolled)
-		: ''}
+	style={windowSize > 612 ? parallexStyle(initialValue - parallexAmount * scrolled) : ''}
 >
 	<div class="image-container">
 		<div class="image"><img src="{imageLocation}Project1_Less.webp" alt="Project1" /></div>
@@ -79,5 +78,29 @@
 		height: 100%;
 		object-fit: cover;
 		object-position: center;
+	}
+	@media only screen and (max-width: 1000px) {
+		.image-container .image {
+			height: 250px;
+		}
+	}
+	@media only screen and (max-width: 750px) {
+		.image-container .image {
+			height: 200px;
+		}
+	}
+
+	@media only screen and (max-width: 612px) {
+		.project-container {
+			padding-bottom: 0;
+		}
+		.image-container {
+			flex-direction: column;
+			width: 80%;
+			margin: 0 auto;
+		}
+		.image-container .image {
+			width: 100%;
+		}
 	}
 </style>

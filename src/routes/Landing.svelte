@@ -78,5 +78,25 @@
 		cursor: none;
 	}
 	@media only screen and (max-width: 612px) {
+		h1 {
+			font-size: 2rem;
+		}
+		.small-description {
+			line-height: 169%;
+			margin-top: 1.5rem;
+			font-size: 1rem;
+		}
+		.wave-icon {
+			width: 52px;
+			margin: 0px;
+			margin-bottom: -8px;
+		}
+	}
+	@media only screen and (max-width: 450px) {
+		.small-description {
+			line-height: 150%;
+			margin-top: 1.5rem;
+			font-size: 1rem;
+		}
 	}
 </style>

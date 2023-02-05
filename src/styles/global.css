@@ -10,6 +10,7 @@
     -webkit-tap-highlight-color: transparent;
 }
 
+
 html {
     scroll-behavior: smooth;
 }
@@ -25,6 +26,7 @@ html {
     --focus-height: 4px;
     --area-of-work: 1rem 10%;
     --padding_in_page: 2rem;
+    --bgImageBlur: 25px;
     --anim-sc: all 400ms ease-out 2000ms;
 }
 
@@ -34,6 +36,10 @@ html {
     /* --bg-color: 31, 35, 43; (Nord) */
     --bg-color: 16, 17, 18;
     --fg-color: 241, 241, 241;
+}
+
+*:focus {
+    background-color: rgb(var(--primary-color), 0.2);
 }
 
 img {
@@ -64,6 +70,44 @@ body a {
     font-size: 2.5rem;
     line-height: 95%;
     color: rgb(var(--primary-color));
+}
+
+.fancy-h {
+    font-size: 3.5rem;
+}
+
+.fancy-p {
+    font-size: 1.2rem;
+    line-height: 169%;
+}
+
+.fancy-sub {
+    font-weight: 300;
+    margin: 1rem 0;
+    font-size: 1.2rem;
+    line-height: 169%;
+}
+
+@media only screen and (max-width: 612px) {
+    .fancy-font {
+        font-size: 2rem;
+        line-height: 95%;
+    }
+
+    .fancy-h {
+        font-size: 2rem;
+    }
+
+    .fancy-p {
+        font-size: 1rem;
+        line-height: 169%;
+    }
+
+    .fancy-sub {
+        font-size: 1rem;
+        line-height: 169%;
+    }
+
 }
 
 .overflow-dots {
@@ -162,26 +206,11 @@ body a {
     mask: url('../lib/images/external-link.svg') no-repeat center;
 }
 
-.i-externalLink{
+.i-externalLink {
     -webkit-mask: url('../lib/images/external-link-alt.svg') no-repeat center;
     mask: url('../lib/images/external-link-alt.svg') no-repeat center;
 }
 
-.fancy-h {
-    font-size: 3.5rem;
-}
-
-.fancy-p {
-    font-size: 1.2rem;
-    line-height: 169%;
-}
-
-.fancy-sub {
-    font-weight: 300;
-    margin: 1rem 0;
-    font-size: 1.2rem;
-    line-height: 169%;
-}
 
 .txtWrap1 {
     width: -webkit-fit-content;
@@ -203,7 +232,110 @@ body a {
     -webkit-box-orient: vertical;
 }
 
+@keyframes openImage {
+
+    0% {
+        background-color: rgba(0, 0, 0, 0);
+        backdrop-filter: blur(0px);
+        filter: brightness(90%) contrast(90%);
+    }
+
+    10% {
+        background-color: rgba(0, 0, 0, 0);
+        backdrop-filter: blur(0px);
+        padding: 2rem;
+        filter: brightness(100%) contrast(100%);
+    }
+
+
+    40% {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        padding: 2rem;
+        background-color: rgba(0, 0, 0, 0);
+        backdrop-filter: blur(0px);
+        filter: brightness(100%) contrast(100%);
+    }
+
+
+    100% {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        padding: 2rem;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(var(--bgImageBlur));
+        filter: brightness(100%) contrast(100%);
+    }
+}
+
+@keyframes closeImage {
+
+    0% {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        padding: 2rem;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(var(--bgImageBlur));
+        filter: brightness(100%) contrast(100%);
+    }
+
+
+    60% {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        padding: 2rem;
+        background-color: rgba(0, 0, 0, 0);
+        backdrop-filter: blur(0px);
+        filter: brightness(100%) contrast(100%);
+    }
+
+    90% {
+        background-color: rgba(0, 0, 0, 0);
+        backdrop-filter: blur(0px);
+        padding: 2rem;
+        filter: brightness(100%) contrast(100%);
+    }
+
+    100% {
+        background-color: rgba(0, 0, 0, 0);
+        backdrop-filter: blur(0px);
+        filter: brightness(90%) contrast(90%);
+    }
+}
+
 .fullscreen-preview {
+    cursor: zoom-out;
+    box-sizing: border-box;
+    user-select: none;
+    animation: openImage 1000ms cubic-bezier(0, 0.12, 0, 0.97) forwards;
+}
+
+.remove-preview {
+    cursor: not-allowed;
+    pointer-events: none;
+    user-select: none;
+    box-sizing: border-box;
+    /* animation: closeImage 600ms cubic-bezier(1, 0.3, 1, 0.51) forwards; */
+    animation: closeImage 600ms cubic-bezier(.68, .08, 1, .99) forwards;
+}
+
+.sfullscreen-preview {
     cursor: zoom-out;
     z-index: 101;
     position: fixed;
@@ -245,6 +377,7 @@ body a {
 
 .copied-text {
     position: relative;
+    overflow: visible !important;
 }
 
 .copied-text::before {
@@ -281,4 +414,14 @@ body a {
 .copied-text.copied-popup:hover::before {
     opacity: 1;
     transition: opacity 200ms ease;
+}
+
+@media only screen and (max-width: 612px) {
+
+    .fancy-font,
+    .fancy-h,
+    .fancy-p,
+    .fancy-sub {
+        text-align: left;
+    }
 }

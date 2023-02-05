@@ -48,7 +48,13 @@
 			]
 		}
 	];
+	let windowSize;
+	let scrolled = 0;
+	let initialValue = 1000;
+	let parallexAmount = 0.4; // Increase to make the parallex more
 </script>
+
+<svelte:window bind:scrollY={scrolled} bind:innerWidth={windowSize} />
 
 <div class="skills-container">
 	<div class="skills-content">
@@ -61,6 +67,10 @@
 		<p class="quote">
 			“Learning is a never ending journey”
 			<!-- <small>- <abbr title="I don't know">idk</abbr> who said this</small> -->
+			<span
+				style="transform: translateX({initialValue - parallexAmount * scrolled}px);"
+				class="backdropText">SKILLS</span
+			>
 		</p>
 	</div>
 	<div class="skills-showcase">
@@ -68,7 +78,7 @@
 			<div class="field">
 				<p class="category">{skill.category}</p>
 				{#each skill.skills as data}
-					<Skill name="{data.name}" level="{data.level}" hueRotate={skill.color} />
+					<Skill name={data.name} level={data.level} hueRotate={skill.color} />
 				{/each}
 			</div>
 		{/each}
@@ -113,9 +123,9 @@
 		text-align: right;
 		margin-top: 0.4rem;
 	}
-	.skills-container .skills-content .quote::before {
-		content: 'SKILLS';
+	.skills-container .skills-content .quote .backdropText {
 		font-family: 'Playfair Display', serif;
+		user-select: none;
 		color: rgb(var(--primary-color));
 		display: block;
 		position: absolute;
@@ -144,25 +154,31 @@
 	.skills-container .skills-showcase .field {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		grid-template-areas: "category category"
-							"skills skills";
+		grid-template-areas:
+			'category category'
+			'skills skills';
 		justify-content: flex-start;
 		align-items: flex-start;
 		gap: 1.5rem 3rem;
 	}
-	.skills-container .skills-showcase .field .category{
+	.skills-container .skills-showcase .field .category {
 		grid-area: category;
 	}
-	.skills-container .skills-showcase .field div{
+	.skills-container .skills-showcase .field div {
 		grid-area: skills;
 	}
-	@media only screen and (max-width: 612px)
-	{
-		.skills-container{
+	@media only screen and (max-width: 712px) {
+		.skills-container {
 			flex-direction: column;
 		}
-		.skills-container .skills-content{
+		.skills-container .skills-content {
 			position: static;
+		}
+	}
+
+	@media only screen and (max-width: 612px) {
+		.fancy-h {
+			font-size: 3.5rem;
 		}
 	}
 </style>
