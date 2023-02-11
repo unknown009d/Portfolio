@@ -1,8 +1,8 @@
 <script>
 	//@ts-nocheck
 	import HeadDoc from './HeadDoc.svelte';
+	import { onMount } from 'svelte';
 	import SectionH from './SectionH.svelte';
-	let imageLocation = 'src/lib/images/Projects/'; //TODO: Change of this doesn't work in build
 	let windowSize;
 	let scrolled = 0;
 	let initialValue = 250;
@@ -14,10 +14,22 @@
 		}
 		return 'transform: rotate(2deg) scale(1.2) translate(' + parallexCalculated + 'px, 75px);';
 	};
+
+	let projectsShowcase = [];
+
+	onMount(async () => {
+		const response = await fetch('dynamic/projectsShowcase.json');
+		if (response.ok) {
+			const data = await response.json();
+			projectsShowcase = data;
+		}
+	});
 </script>
 
 <svelte:window bind:scrollY={scrolled} bind:innerWidth={windowSize} />
 
+{#if projectsShowcase.length > 0}
+	
 <div class="page p-padding">
 	<SectionH
 		heading="The Collection"
@@ -30,16 +42,18 @@
 	style={windowSize > 612 ? parallexStyle(initialValue - parallexAmount * scrolled) : ''}
 >
 	<div class="image-container">
-		<div class="image"><img src="{imageLocation}Project1_Less.webp" alt="Project1" /></div>
-		<div class="image"><img src="{imageLocation}Project2_Less.webp" alt="Project2" /></div>
-		<div class="image"><img src="{imageLocation}Project3_Less.webp" alt="Project3" /></div>
+		{#each projectsShowcase[0].projects as data}
+			<div class="image"><img src="{data.image}" alt="{projectsShowcase.name}" /></div>
+		{/each}
 	</div>
 	<div class="image-container">
-		<div class="image"><img src="{imageLocation}Project4_Less.webp" alt="Project4" /></div>
-		<div class="image"><img src="{imageLocation}Project5_Less.webp" alt="Project5" /></div>
-		<div class="image"><img src="{imageLocation}Project6_Less.webp" alt="Project6" /></div>
+		{#each projectsShowcase[1].projects as data}
+			<div class="image"><img src="{data.image}" alt="{projectsShowcase.name}" /></div>
+		{/each}
 	</div>
 </div>
+
+{/if}
 
 <style>
 	.project-container {

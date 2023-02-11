@@ -1,32 +1,18 @@
 <script>
 	// @ts-nocheck
 
-	import SectionH from './SectionH.svelte';
+	import { onMount } from 'svelte';
 
-	let imageLocation = '../src/lib/images/'; //TODO: Change of this doesn't work in build
-	let schoolsData = [
-		{
-			id: 1,
-			img: 'ManavRachna.webp',
-			name: 'Manav Rachna International Institute of Research & Studies (Faridabad)',
-			course: 'Bachelor of Technology - B.Tech in Computer Science & Engineering',
-			duration: 'Aug 2022 - Expected 2025'
-		},
-		{
-			id: 2,
-			img: 'NIELIT.webp',
-			name: 'National Institute of Electronics & Information Technology (Agartala)',
-			course: 'Diploma in Computer Science and Technology',
-			duration: 'Aug 2019 - Aug 2022'
-		},
-		{
-			id: 3,
-			img: 'DonBosco.webp',
-			name: 'Don Bosco School (Agartala)',
-			course: 'Secondary Studies - class 10th of CBSE Board',
-			duration: 'Jun 2007 - Jun 2019'
+	import SectionH from './SectionH.svelte';
+	let schoolsData = [];
+
+	onMount(async () => {
+		const response = await fetch('dynamic/education.json');
+		if (response.ok) {
+			const data = await response.json();
+			schoolsData = data;
 		}
-	];
+	});
 </script>
 
 {#if schoolsData.length > 0}
@@ -39,7 +25,7 @@
 			{#each schoolsData as sData (sData.id)}
 				<div class="school">
 					<div class="school-img">
-						<img src="{imageLocation}{sData.img}" alt="School Logo" />
+						<img src={sData.img} alt="School Logo" />
 					</div>
 					<div class="school-content">
 						<p class="name">{sData.name}</p>
@@ -156,8 +142,8 @@
 		.school-container {
 			margin: 1rem 0;
 		}
-	.school-container::before {
-		left: 10px;
-	}
+		.school-container::before {
+			left: 10px;
+		}
 	}
 </style>

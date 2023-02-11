@@ -34,13 +34,16 @@
 			}, 600);
 		}
 	};
+	let screenWidth, screenHeight;
 </script>
+
+<svelte:window bind:innerHeight={screenHeight} bind:innerWidth={screenWidth} />
 
 <div class="imgText-container" tabindex="-1">
 	<button
 		class="imgHolder"
 		on:click={(event) => {
-			openImage(event);
+			if (screenWidth > 612) openImage(event);
 		}}
 		tabindex="-1"
 	>

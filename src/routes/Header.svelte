@@ -1,4 +1,7 @@
 <script>
+	//@ts-nocheck
+	import { onMount } from 'svelte';
+
 	export let dlinks = [
 		{ id: 1, name: 'Projects', url: '/projects' },
 		{ id: 2, name: 'AboutMe', url: '/aboutme' },
@@ -6,8 +9,17 @@
 	];
 	export let changeLinkToHome = 0;
 	export let homeText = 'home';
-	let mgithub = 'https://github.com/unknown009d';
-	let mlinkedin = 'https://linkedin.com/in/drubajyotidebnath';
+	let mgithub, mlinkedin;
+	// let mgithub = 'https://github.com/unknown009d';
+	// let mlinkedin = 'https://linkedin.com/in/drubajyotidebnath';
+	onMount(async () => {
+		const response = await fetch('dynamic/contact.json');
+		if (response.ok) {
+			const data = await response.json();
+			mgithub = data[0].github;
+			mlinkedin = data[0].linkedin;
+		}
+	});
 </script>
 
 <header>
@@ -177,10 +189,10 @@
 		.start {
 			flex: 0;
 		}
-		.mid{
+		.mid {
 			flex: 0;
 		}
-		.end{
+		.end {
 			flex: 0;
 		}
 	}
@@ -189,33 +201,37 @@
 			flex-direction: column;
 			gap: 1.4rem;
 		}
-		.mid{
+		.mid {
 			font-size: 1.2rem;
 		}
 	}
 	@media only screen and (max-width: 650px) {
-		.mid{
+		.mid {
 			font-size: 1rem;
 		}
 	}
 	@media only screen and (max-width: 450px) {
-		header{
+		header {
 			align-items: flex-start;
 			position: relative;
 		}
-		.mid{
+		.mid {
 			flex-direction: column;
 			align-items: flex-start;
 			gap: 0;
 		}
-		.mid span.seperator{
+		.mid a:focus::after,
+		.mid a:hover::after {
+			display: none;
+		}
+		.mid span.seperator {
 			transform: rotate(90deg) translateY(-15px);
 		}
-		.end{
+		.end {
 			position: absolute;
 			right: 0;
-			top: 0;
-			transform: rotate(-90deg) translate(-110px, 300%);
+			top: 15%;
+			writing-mode: vertical-lr;
 		}
 	}
 </style>

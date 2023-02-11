@@ -6,7 +6,6 @@
 	import Myedu from './Myedu.svelte';
 	import ScrollDown from './scrollDown.svelte';
 	import SkillsPage from './SkillsPage.svelte';
-	import SectionH from './SectionH.svelte';
 	import Certification from './Certification.svelte';
 	import Projects from './Projects.svelte';
 	import Contact from './Contact.svelte';
@@ -92,8 +91,8 @@
 		align-items: flex-start;
 		justify-content: space-between;
 		width: 100%;
-		opacity: 0;
-		animation: welcome 800ms ease 600ms forwards;
+		opacity: 1;
+		/* animation: welcome 800ms ease 600ms forwards; */
 	}
 	@media only screen and (max-width: 950px) {
 		#CoverInitial {

@@ -1,7 +1,10 @@
 <script>
 	// @ts-nocheck
 
+	import { onMount } from 'svelte';
 	import SectionH from './SectionH.svelte';
+
+	export let showHeading = true;
 
 	const copyToClip = (event) => {
 		navigator.clipboard.writeText(event.target.innerText);
@@ -10,12 +13,30 @@
 			event.target.classList.remove('copied-popup');
 		}, 3000);
 	};
+
+	let d_github = 'https://github.com/unknown009d',
+		d_linkedin = 'https://linkedin.com/in/drubajyotidebnath',
+		d_email = 'vbunitynet@gmail.com',
+		d_phone = '+91 7085 759 582';
+
+	onMount(async () => {
+		const response = await fetch('dynamic/contact.json');
+		if (response.ok) {
+			const data = await response.json();
+			d_github = data[0].github;
+			d_linkedin = data[0].linkedin;
+			d_email = data[0].email;
+			d_phone = data[0].phone;
+		}
+	});
 </script>
 
-<SectionH
-	heading="Get in touch..."
-	sub="Interested in working with me or maybe just want to have a conversation? "
-/>
+{#if showHeading}
+	<SectionH
+		heading="Get in touch ..."
+		sub="Interested in working with me or maybe just want to have a conversation? "
+	/>
+{/if}
 
 <div class="cd-container">
 	<div class="cd-item">
@@ -23,7 +44,7 @@
 		<div class="cd-content">
 			<h5>Github</h5>
 			<a href="https://github.com/unknown009d/" target="_blank" rel="noreferrer" class="txtWrap">
-				https://github.com/unknown009d/
+				{d_github}
 			</a>
 		</div>
 	</div>
@@ -37,7 +58,7 @@
 				rel="noreferrer"
 				class="txtWrap"
 			>
-				https://www.linkedin.com/in/drubajyotidebnath/
+				{d_linkedin}
 			</a>
 		</div>
 	</div>
@@ -53,10 +74,10 @@
 						copyToClip(event);
 					}}
 				>
-					vbunitynet@gmail.com
+					{d_email}
 				</p>
 				<!-- svelte-ignore a11y-missing-content -->
-				<a href="mailto:vbunitynet@gmail.com" class="linkBtn">
+				<a href="mailto:{d_email}" class="linkBtn">
 					<span class="icon i-externalLink" />
 				</a>
 			</div>
@@ -74,10 +95,10 @@
 						copyToClip(event);
 					}}
 				>
-					+91 7085 759 582
+					{d_phone}
 				</p>
 				<!-- svelte-ignore a11y-missing-content -->
-				<a href="tel:7085759582" class="linkBtn"><span class="icon i-externalLink" /></a>
+				<a href="tel:{d_phone}" class="linkBtn"><span class="icon i-externalLink" /></a>
 			</div>
 		</div>
 	</div>
@@ -148,7 +169,7 @@
 		display: grid;
 		place-items: center;
 		height: 26px;
-		width: 26px;
+		width: 30px;
 		border-radius: 4px;
 	}
 	.cxtras .linkBtn:hover .i-externalLink {
@@ -177,11 +198,11 @@
 			display: block;
 		}
 		.cd-container .cd-item .cd-img {
-			width: 42px;
-			height: 42px;
-			min-height: 24px;
-			min-width: 24px;
 			display: none;
+		}
+
+		.cxtras .linkBtn {
+			transform: scale(1.2);
 		}
 	}
 </style>

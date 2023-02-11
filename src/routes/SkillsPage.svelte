@@ -1,89 +1,57 @@
 <script>
 	//@ts-nocheck
+	import { onMount } from 'svelte';
 	import Skill from './Skill.svelte';
-	export let skillsets = [
-		{
-			color: 0,
-			category: 'Core Programming',
-			skills: [
-				{ name: 'C', level: 'Advanced' },
-				{ name: 'C++', level: 'Intermediate' },
-				{ name: 'Java', level: 'Amature' },
-				{ name: 'Python', level: 'Intermediate' },
-				{ name: 'Bash', level: 'Intermediate' },
-				{ name: 'MySQL', level: 'Advanced' }
-			]
-		},
-		{
-			color: 2,
-			category: 'Application Based',
-			skills: [
-				{ name: 'Andoid Studio', level: 'Amature' },
-				{ name: 'VB.NET', level: 'Advanced' }
-			]
-		},
-		{
-			color: 3,
-			category: 'Web Based',
-			skills: [
-				{ name: 'HTML5', level: 'Advanced' },
-				{ name: 'CSS3', level: 'Expert' },
-				{ name: 'JavaScript', level: 'Intermediate' },
-				{ name: 'PHP', level: 'Experienced' },
-				{ name: 'AngularJS', level: 'Advanced' },
-				{ name: 'Svelte', level: 'Novice' }
-			]
-		},
-		{
-			color: 4,
-			category: 'Graphics Design',
-			skills: [
-				{ name: 'GIMP', level: 'Intermediate' },
-				{ name: 'Krita', level: 'Intermediate' },
-				{ name: 'Inkscape', level: 'Novice' },
-				{ name: 'Blender', level: 'Amature' },
-				{ name: 'Figma', level: 'Advanced' },
-				{ name: 'Illustrator', level: 'Advanced' },
-				{ name: 'Photoshop', level: 'Experience' }
-			]
-		}
-	];
+	let skillsets = [];
 	let windowSize;
 	let scrolled = 0;
 	let initialValue = 1000;
 	let parallexAmount = 0.4; // Increase to make the parallex more
+
+	onMount(async () => {
+		const response = await fetch('dynamic/skills.json');
+		if (response.ok) {
+			const data = await response.json();
+			skillsets = data;
+		}
+	});
 </script>
 
 <svelte:window bind:scrollY={scrolled} bind:innerWidth={windowSize} />
+<svelte:body bind:this={mainBody} />
 
-<div class="skills-container">
-	<div class="skills-content">
-		<h2 class="fancy-font fancy-h">Have a look at my skills</h2>
-		<p class="fancy-p">
-			In these 5+ years of self taught journey, I have experienced a lot of new & advanced
-			technologies and have tried most of them. But the one thing that i will always have in me is
-			the urge to learn more.
-		</p>
-		<p class="quote">
-			“Learning is a never ending journey”
-			<!-- <small>- <abbr title="I don't know">idk</abbr> who said this</small> -->
-			<span
-				style="transform: translateX({initialValue - parallexAmount * scrolled}px);"
-				class="backdropText">SKILLS</span
-			>
-		</p>
+{#if skillsets.length > 0}
+	<div class="skills-container">
+		<div class="skills-content">
+			<h2 class="fancy-font fancy-h">Have a look at my skills</h2>
+			<p class="fancy-p">
+				In these 5+ years of self taught journey, I have experienced a lot of new & advanced
+				technologies and have tried most of them. But the one thing that i will always have in me is
+				the urge to learn more.
+			</p>
+			<p class="quote">
+				“Learning is a never ending journey”
+				<small>- <abbr title="I don't know">idk</abbr> who said this</small>
+				<span
+					style="transform: translateX({initialValue - parallexAmount * scrolled}px);"
+					class="backdropText"
+				>
+					SKILLS
+				</span>
+			</p>
+		</div>
+		<div class="skills-showcase">
+			{#each skillsets as skill}
+				<div class="field">
+					<p class="category">{skill.category}</p>
+					{#each skill.skills as data}
+						<Skill name={data.name} level={data.level} hueRotate={skill.color} />
+					{/each}
+				</div>
+			{/each}
+		</div>
 	</div>
-	<div class="skills-showcase">
-		{#each skillsets as skill}
-			<div class="field">
-				<p class="category">{skill.category}</p>
-				{#each skill.skills as data}
-					<Skill name={data.name} level={data.level} hueRotate={skill.color} />
-				{/each}
-			</div>
-		{/each}
-	</div>
-</div>
+{/if}
 
 <style>
 	.skills-container {
@@ -99,7 +67,6 @@
 		background-color: rgb(var(--nord-color));
 		color: #ffffff;
 		padding: var(--area-of-work);
-		padding-right: 3rem;
 		position: sticky;
 		top: 0;
 		overflow: hidden;
@@ -107,7 +74,7 @@
 		padding-bottom: 8rem;
 	}
 	.skills-container .skills-content .fancy-font {
-		--primary-color: 172, 161, 245;
+		/* --primary-color: 172, 161, 245; */
 	}
 	.skills-container .skills-content .quote {
 		position: relative;
@@ -145,7 +112,6 @@
 		flex: 4;
 		background-color: rgba(var(--bg-color), 0.8);
 		padding: var(--area-of-work);
-		padding-left: 3rem;
 		box-shadow: inset 20px 0 20px -20px rgba(var(--bg-color), 0.6);
 		display: flex;
 		flex-direction: column;
@@ -167,18 +133,33 @@
 	.skills-container .skills-showcase .field div {
 		grid-area: skills;
 	}
+	@media only screen and (max-width: 820px) {
+		.skills-container .skills-showcase .field {
+			gap: 1.5rem 1rem;
+		}
+	}
 	@media only screen and (max-width: 712px) {
 		.skills-container {
 			flex-direction: column;
 		}
 		.skills-container .skills-content {
 			position: static;
+			padding-right: auto;
+		}
+	}
+
+	@media only screen and (min-width: 712px) {
+		.skills-container .skills-content {
+			padding-right: 3rem;
+		}
+		.skills-container .skills-showcase {
+			padding-left: 3rem;
 		}
 	}
 
 	@media only screen and (max-width: 612px) {
 		.fancy-h {
-			font-size: 3.5rem;
+			font-size: 3rem;
 		}
 	}
 </style>

@@ -27,13 +27,13 @@
 		50%,
 		80%,
 		100% {
-			transform: translateY(-150px);
+			transform: translateY(-150px) translateX(-50px);
 		}
 		40% {
-			transform: translateY(-170px);
+			transform: translateY(-170px) translateX(-50px);
 		}
 		60% {
-			transform: translateY(-160px);
+			transform: translateY(-160px) translateX(-50px);
 		}
 	}
 	.scroll-down-component {
@@ -42,8 +42,8 @@
 		position: sticky;
 		width: 50px;
 		bottom: 0;
-		transform: translateY(-150px);
-		left: calc(100% - 100px);
+		transform: translateY(-150px) translateX(-50px);
+		left: 100%;
 		height: 0px;
 		/* animation: scrollDown 4s ease infinite; */
 		cursor: pointer;

@@ -1,75 +1,59 @@
 <script>
 	// @ts-nocheck
-
+	import { onMount } from 'svelte';
 	import ImgText from './ImgText.svelte';
 	import SectionH from './SectionH.svelte';
-	import Arrow from '$lib/images/ArrowNext.svg';
 
-	let imageLocation = 'src/lib/images/Certificates/'; //TODO: Change of this doesn't work in build
-	let certificates = [
+	let certificates = [];
+
+	onMount(async () => {
+		const response = await fetch("dynamic/certificates.json");
+		if(response.ok)
 		{
-			id: 1,
-			img: 'Certificate1.webp',
-			title: 'Responsive Web Design',
-			issued: 'Issued on 2021 - freeCodeCamp'
-		},
-		{
-			id: 2,
-			img: 'Certificate2.webp',
-			title: 'Object Oriented Programming',
-			issued: 'Issued on 2022 - LinkedIn'
-		},
-		{
-			id: 3,
-			img: 'Certificate3.webp',
-			title: 'Develop your communication skills and interpersonal influence',
-			issued: 'Issued on 2022 - LinkedIn'
-		},
-		{
-			id: 4,
-			img: 'Certificate4.webp',
-			title: 'Learning Cyber Incident Response and Digital Forensics',
-			issued: 'Issued on 2022 - LinkedIn'
+			const data = await response.json();
+			certificates = data;
 		}
-	];
+	});
 </script>
 
-<div class="page">
-	<SectionH
-		heading="Endorsements"
-		sub="Here are some of the certification that I have achieved..."
-	/>
-</div>
+{#if certificates.length > 0}
+	<div class="page">
+		<SectionH
+			heading="Certificates Achieved"
+			sub="Here are some of the certification that I have achieved..."
+		/>
+	</div>
 
-<div class="certificate-container">
-	<div class="sb-container bt-previous">
-		<button
-			class="scroll-btns"
-			data-tooltip="Previous"
-			on:click={(event) => {
-				event.target.parentNode.parentNode.scrollLeft -= 250;
-			}}
-		>
-			<span class="icon i-backward" />
-		</button>
-	</div>
-	{#each certificates as { id, img, title, issued }}
-		<div class="certi" tabindex="-1">
-			<ImgText img="{imageLocation}{img}" {title} sub={issued} />
+	<div class="certificate-container">
+		<div class="sb-container bt-previous">
+			<button
+				class="scroll-btns"
+				data-tooltip="Previous"
+				on:click={(event) => {
+					event.target.parentNode.parentNode.scrollLeft -= 250;
+				}}
+			>
+				<span class="icon i-backward" />
+			</button>
 		</div>
-	{/each}
-	<div class="sb-container bt-next">
-		<button
-			class="scroll-btns"
-			data-tooltip="Next"
-			on:click={(event) => {
-				event.target.parentNode.parentNode.scrollLeft += 250;
-			}}
-		>
-			<span class="icon i-forward" />
-		</button>
+		{#each certificates as { id, img, title, issued }}
+			<div class="certi" tabindex="-1">
+				<ImgText img="{img}" {title} sub={issued} />
+			</div>
+		{/each}
+		<div class="sb-container bt-next">
+			<button
+				class="scroll-btns"
+				data-tooltip="Next"
+				on:click={(event) => {
+					event.target.parentNode.parentNode.scrollLeft += 250;
+				}}
+			>
+				<span class="icon i-forward" />
+			</button>
+		</div>
 	</div>
-</div>
+{/if}
 
 <style>
 	.certificate-container {
@@ -141,41 +125,39 @@
 		opacity: 0;
 		transition: opacity 400ms ease;
 	}
-	@keyframes moveAside{
-		0%{
+	@keyframes moveAside {
+		0% {
 			transform: translate(0px, -25px);
 		}
-		10%{
-			transform: translate(0px , -25px);
+		10% {
+			transform: translate(0px, -25px);
 		}
-		40%{
+		40% {
 			transform: translate(10px, -25px);
 		}
-		50%{
+		50% {
 			transform: translate(0px, -25px);
 		}
-		60%{
+		60% {
 			transform: translate(10px, -25px);
 		}
-		80%{
+		80% {
 			transform: translate(0px, -25px);
 		}
-		100%{
+		100% {
 			transform: translate(0px, -25px);
 		}
 	}
 	.certificate-container .scroll-btns:focus,
 	.certificate-container .scroll-btns:focus-within,
-	.certificate-container .scroll-btns:focus-visible
-	{
+	.certificate-container .scroll-btns:focus-visible {
 		box-shadow: 0 0 0 2px rgb(var(--bg-color));
 		animation: moveAside 3000ms ease infinite;
 	}
 	.certificate-container .scroll-btns:hover::after,
 	.certificate-container .scroll-btns:focus::after,
 	.certificate-container .scroll-btns:focus-within,
-	.certificate-container .scroll-btns:focus-visible
-	{
+	.certificate-container .scroll-btns:focus-visible {
 		opacity: 1;
 		transition: opacity 400ms ease 400ms;
 	}

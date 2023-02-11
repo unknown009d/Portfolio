@@ -70,4 +70,10 @@
 			font-size: 0.7rem;
 		}
 	}
-</style>
+
+	@media only screen and (max-width: 350px) {
+		.skills {
+			padding: 1rem 0.5rem;
+		}
+	}
+ </style>
