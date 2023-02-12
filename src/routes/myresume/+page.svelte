@@ -7,5 +7,5 @@
 
 <section class="page">
     <Header changeLinkToHome={3} />
-    <h1>myresume</h1>
+    <h2>In Progress</h2>
 </section>

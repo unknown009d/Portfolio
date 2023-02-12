@@ -47,7 +47,7 @@
 		</svg>
 		<h1>IND</h1>
 	</div>
-	<div class="mid">
+	<nav class="mid">
 		{#each dlinks as link, index}
 			{#if link.id == changeLinkToHome}
 				<a href="/">{homeText}</a>
@@ -58,7 +58,7 @@
 				<span class="seperator">|</span>
 			{/if}
 		{/each}
-	</div>
+	</nav>
 
 	<div class="end">
 		<p>
@@ -208,6 +208,12 @@
 	@media only screen and (max-width: 650px) {
 		.mid {
 			font-size: 1rem;
+		}
+	}
+	@media only screen and (max-width: 612px) {
+		.end p a:focus::before,
+		.end p a:hover::before {
+			width: 0;
 		}
 	}
 	@media only screen and (max-width: 450px) {

@@ -1,12 +1,12 @@
 <script>
 	// @ts-nocheck
-
 	import { onMount } from 'svelte';
 
 	import SectionH from './SectionH.svelte';
 	let schoolsData = [];
-
+	let isLoaded = false;
 	onMount(async () => {
+		isLoaded = true;
 		const response = await fetch('dynamic/education.json');
 		if (response.ok) {
 			const data = await response.json();
@@ -16,7 +16,8 @@
 </script>
 
 {#if schoolsData.length > 0}
-	<div class="education p-padding">
+	<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+	<div class="education p-padding" tabindex="0">
 		<SectionH
 			heading="Academic Experience"
 			sub="Educational background in a reverse-chronological order"

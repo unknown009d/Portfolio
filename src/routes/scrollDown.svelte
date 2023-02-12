@@ -1,12 +1,27 @@
-<script type="applicatin/javascript">
+<script>
 	//@ts-nocheck
+	import { onMount } from 'svelte';
 	const scrollToContent = () => {
 		scrollTo(0, 500);
 	};
+
+	let isLoaded = false;
+
+	onMount(() => {
+		isLoaded = true;
+	});
 </script>
 
 <a href="#works" class="scroll-down-component" on:click={scrollToContent} id="sdc">
-	<svg width="69" height="102" viewBox="0 0 69 102" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<svg
+		width="69"
+		height="102"
+		viewBox="0 0 69 102"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+		class:dinit={isLoaded}
+		style="animation-delay: 2800ms;"
+	>
 		<path
 			fill-rule="evenodd"
 			clip-rule="evenodd"
@@ -68,7 +83,7 @@
 		fill: rgb(var(--primary-color));
 	}
 	@media only screen and (max-width: 612px) {
-		.scroll-down-component{
+		.scroll-down-component {
 			display: none;
 		}
 	}

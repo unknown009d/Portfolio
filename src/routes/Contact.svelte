@@ -43,7 +43,7 @@
 		<div class="cd-img"><span class="icon i-lg i-github_lg" /></div>
 		<div class="cd-content">
 			<h5>Github</h5>
-			<a href="https://github.com/unknown009d/" target="_blank" rel="noreferrer" class="txtWrap">
+			<a href="https://github.com/unknown009d/" target="_blank" rel="noreferrer" class="txtWrap underline">
 				{d_github}
 			</a>
 		</div>
@@ -56,7 +56,7 @@
 				href="https://www.linkedin.com/in/drubajyotidebnath/"
 				target="_blank"
 				rel="noreferrer"
-				class="txtWrap"
+				class="txtWrap underline"
 			>
 				{d_linkedin}
 			</a>
@@ -69,7 +69,7 @@
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<div class="cxtras">
 				<p
-					class="txtWrap copied-text"
+					class="txtWrap copied-text underline"
 					on:click={(event) => {
 						copyToClip(event);
 					}}
@@ -77,7 +77,7 @@
 					{d_email}
 				</p>
 				<!-- svelte-ignore a11y-missing-content -->
-				<a href="mailto:{d_email}" class="linkBtn">
+				<a href="mailto:{d_email}" class="linkBtn underline">
 					<span class="icon i-externalLink" />
 				</a>
 			</div>
@@ -90,7 +90,7 @@
 			<div class="cxtras">
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<p
-					class="txtWrap copied-text"
+					class="txtWrap copied-text underline"
 					on:click={(event) => {
 						copyToClip(event);
 					}}
@@ -98,7 +98,7 @@
 					{d_phone}
 				</p>
 				<!-- svelte-ignore a11y-missing-content -->
-				<a href="tel:{d_phone}" class="linkBtn"><span class="icon i-externalLink" /></a>
+				<a href="tel:{d_phone}" class="linkBtn underline"><span class="icon i-externalLink" /></a>
 			</div>
 		</div>
 	</div>
@@ -178,15 +178,18 @@
 	.cxtras:focus,
 	.cxtras:focus-within,
 	.cxtras:focus-visible {
-		background-color: rgb(var(--primary-color), 0.2);
+		/* background-colunderlineor: rgb(var(--primary-color), 0.2); */
 	}
 	.cd-container .cd-item .cd-content a {
-		border-bottom: 2px dashed rgba(var(--primary-color), 0.4);
+		/* border-bottom: 2px dashed rgba(var(--primary-color), 0.4); */
 	}
 	@media only screen and (max-width: 612px) {
+		.underline::after{
+			display: none;
+		}
 		.cd-container .cd-item .cd-content a {
-			text-decoration: underline;
-			border-bottom: none;
+			/* text-decoration: underline; */
+			/* border-bottom: none; */
 		}
 		.cd-container .cd-item .cd-content a,
 		.cd-container .cd-item .cd-content p {

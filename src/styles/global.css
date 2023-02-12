@@ -41,8 +41,8 @@ html {
     --fg-color: 241, 241, 241;
 }
 
-*:focus-visible{
-    background-color: rgb(var(--primary-color), 0.2);
+*:focus-visible {
+    /* background-color: rgb(var(--primary-color), 0.2); */
 }
 
 img {
@@ -385,7 +385,7 @@ body a {
 }
 
 .copied-text::before {
-    content: "Click to copy 📋";
+    content: "Click to copy 📎";
     position: absolute;
     top: -2rem;
     right: 0rem;
@@ -434,6 +434,63 @@ abbr::after {
     right: 0;
     width: 100%;
     border-bottom: 3px dotted rgba(var(--fg-color), 0.4);
+}
+
+.underline {
+    position: relative;
+}
+
+.underline::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 0px;
+    height: 40%;
+    background-color: rgba(var(--primary-color), 0.2);
+    transition: all 400ms ease 200ms;
+    z-index: -1;
+}
+
+.underline:focus::after,
+.underline:hover::after {
+    width: 100%;
+}
+
+@keyframes zoomOut {
+    0% {
+        opacity: 0;
+        transform: scale(1.4);
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.initialized {
+    opacity: 0;
+    animation: zoomOut 1500ms ease 1800ms forwards;
+}
+
+@keyframes init {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.dinit {
+    opacity: 1;
+    transition: opacity 1500ms ease;
 }
 
 @media only screen and (max-width: 612px) {

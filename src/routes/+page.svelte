@@ -9,6 +9,7 @@
 	import Certification from './Certification.svelte';
 	import Projects from './Projects.svelte';
 	import Contact from './Contact.svelte';
+	import { onMount } from 'svelte';
 
 	let scrolled = 0;
 	let backgroundImagePosY = 70; // Default value from styles
@@ -26,12 +27,22 @@
 			]
 		}
 	];
+
+	let isLoaded = false;
+
+	onMount(() => {
+		document.body.addEventListener('load', () => {
+			console.log('Fick');
+		});
+		isLoaded = true;
+	});
 </script>
 
 <svelte:window bind:scrollY={scrolled} bind:innerWidth={windowSize} />
 
 <HeadDoc />
 
+<!-- class:initialized={isLoaded} -->
 <section
 	class="page p-cover"
 	id="CoverInitial"
@@ -72,18 +83,19 @@
 	.p-certi {
 		margin-bottom: 3.2rem;
 	}
+
 	@keyframes welcome {
 		0% {
 			opacity: 0;
 		}
+
 		100% {
 			opacity: 1;
 		}
 	}
-
 	#CoverInitial {
 		background: linear-gradient(to top, rgb(var(--bg-color)) 20%, rgba(var(--bg-color), 0.7) 110%),
-			url('../lib/images/Background.jpeg') 0%/150% no-repeat;
+			url('../lib/images/Background.webp') 0%/150% no-repeat;
 		background-position-y: 70%;
 		background-position-x: 7%;
 		display: flex;
@@ -91,8 +103,6 @@
 		align-items: flex-start;
 		justify-content: space-between;
 		width: 100%;
-		opacity: 1;
-		/* animation: welcome 800ms ease 600ms forwards; */
 	}
 	@media only screen and (max-width: 950px) {
 		#CoverInitial {
@@ -128,7 +138,7 @@
 					rgba(var(--bg-color), 0.8),
 					rgba(var(--bg-color), 1) 100%
 				),
-				url('../lib/images/Background_light_blurred.jpeg') 0%/150% no-repeat;
+				url('../lib/images/Background_light_blurred.webp') 0%/150% no-repeat;
 		}
 	} */
 </style>

@@ -30,7 +30,8 @@
 
 {#if projectsShowcase.length > 0}
 	
-<div class="page p-padding">
+<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+<div class="page p-padding" tabindex="0">
 	<SectionH
 		heading="The Collection"
 		sub="Have a look at some of the projects i have worked on ..."

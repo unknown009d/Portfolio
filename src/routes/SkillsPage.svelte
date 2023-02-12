@@ -21,7 +21,8 @@
 <svelte:body bind:this={mainBody} />
 
 {#if skillsets.length > 0}
-	<div class="skills-container">
+	<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+	<div class="skills-container" tabindex="0">
 		<div class="skills-content">
 			<h2 class="fancy-font fancy-h">Have a look at my skills</h2>
 			<p class="fancy-p">
@@ -31,7 +32,7 @@
 			</p>
 			<p class="quote">
 				“Learning is a never ending journey”
-				<small>- <abbr title="I don't know">idk</abbr> who said this</small>
+				<!-- <small>- <abbr title="I don't know">idk</abbr> who said this</small> -->
 				<span
 					style="transform: translateX({initialValue - parallexAmount * scrolled}px);"
 					class="backdropText"
@@ -84,6 +85,8 @@
 		font-style: italic;
 		font-size: 1rem;
 		opacity: 0.8;
+		pointer-events: none;
+		user-select: none;
 	}
 	.skills-container .skills-content .quote small {
 		display: block;

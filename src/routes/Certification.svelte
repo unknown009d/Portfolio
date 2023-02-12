@@ -7,9 +7,8 @@
 	let certificates = [];
 
 	onMount(async () => {
-		const response = await fetch("dynamic/certificates.json");
-		if(response.ok)
-		{
+		const response = await fetch('dynamic/certificates.json');
+		if (response.ok) {
 			const data = await response.json();
 			certificates = data;
 		}
@@ -38,7 +37,7 @@
 		</div>
 		{#each certificates as { id, img, title, issued }}
 			<div class="certi" tabindex="-1">
-				<ImgText img="{img}" {title} sub={issued} />
+				<ImgText {img} {title} sub={issued} />
 			</div>
 		{/each}
 		<div class="sb-container bt-next">
@@ -169,6 +168,11 @@
 		user-select: none;
 		background-color: rgb(var(--bg-color));
 		transition: background-color 400ms ease;
+	}
+	@media only screen and (max-width: 612px) {
+		.sb-container {
+			display: none;
+		}
 	}
 	/* @media (prefers-color-scheme: light) {
 		.certificate-container .scroll-btns {
