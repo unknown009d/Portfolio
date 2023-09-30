@@ -208,9 +208,12 @@
 			flex: 0;
 		}
 	}
-	@media only screen and (max-width: 950px) {
+	/* Uncomment this if more than 2 elements are there in the nav
+	@media only screen and (max-width: 950px) { */
+	@media only screen and (max-width: 650px) {
 		header {
 			flex-direction: column;
+			align-items: flex-start;
 			gap: 1.4rem;
 		}
 		.mid {

@@ -43,7 +43,7 @@
 			</div>
 			<div class="img-grid invert">
 				{#each ResumeData[0].pages as data}
-					<a href="{ResumeData[0].dir}{data}{ResumeData[0].type}" target="_blank">
+					<a href="{ResumeData[0].dir}{data}{ResumeData[0].type}" target="_blank" rel="noreferrer">
 						<img src="{ResumeData[0].dir}{data}{ResumeData[0].type}" alt="Resume{data}" />
 					</a>
 				{/each}
@@ -78,5 +78,14 @@
 		justify-content: end;
 		place-items: end;
 		margin-bottom: 1rem;
+	}
+	@media only screen and (max-width: 650px) {
+		.btn-container {
+			justify-content: start;
+			place-items: start;
+		}
+		.img-grid{
+			margin-top: 3rem;
+		}
 	}
 </style>

@@ -562,7 +562,21 @@ abbr::after {
         opacity: 1;
     }
 }
-
+@media only screen and (max-width: 650px) {
+    .errorh1, .errorp{
+        text-align: left;
+        margin: 0;
+    }
+    .errorh1{
+        font-size: 3rem;
+    }
+    .errorp{
+        font-size: 1rem;
+        width: 80%;
+        text-transform: capitalize;
+        letter-spacing: 0;
+    }
+}
 @media only screen and (max-width: 612px) {
 
     .fancy-font,
