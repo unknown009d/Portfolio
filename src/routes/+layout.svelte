@@ -6,18 +6,18 @@
 	import Contact from './Contact.svelte';
 	import { onMount } from 'svelte';
 
-	let randomNum = 0;
+	let randomNum = 1;
 
 	let isLoaded = false;
 	let sarcasmQuotes = [];
 
 	onMount(async () => {
 		isLoaded = true;
-		randomNum = Math.floor(Math.random() * sarcasmQuotes.length);
 		const response = await fetch('dynamic/homePage.json');
 		if (response.ok) {
 			const data = await response.json();
 			sarcasmQuotes = data[0].sarcasm;
+			randomNum = Math.floor(Math.random() * sarcasmQuotes.length);
 		}
 	});
 </script>
@@ -32,7 +32,7 @@
 </section>
 
 <HeadDoc />
-<main class:dinit={isLoaded} style="transition-delay: 2500ms;">
+<main class:dinit={isLoaded} style="transition-delay: 2800ms;">
 	<slot />
 </main>
 
@@ -49,7 +49,6 @@
 <style>
 	main {
 		opacity: 0;
-		transition: opacity 1500ms ease;
 	}
 	.dinit {
 		opacity: 1;
@@ -158,7 +157,7 @@
 		opacity: 1;
 		/* animation: loaded 1000ms cubic-bezier(0.78, 0.34, 0.41, 1) 1200ms forwards; */
 		/* animation: loaded 1500ms cubic-bezier(1, 0.02, 0.41, 1) 1200ms forwards; */
-		animation: loaded 2000ms cubic-bezier(0.61, 0.11, 0, 0.99) 2000ms forwards;
+		animation: loaded 2000ms cubic-bezier(0.61, 0.11, 0, 0.99) 2400ms forwards;
 	}
 	.lshow::after {
 		display: none;

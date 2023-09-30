@@ -26,7 +26,7 @@
 <Header />
 <div class="landing-content">
 	<h2 class="normal-heading">
-		Hey there
+		Hey there 
 		<img src={WaveHand} id="wi" class="wave-icon" alt="👋🏽" />
 	</h2>
 	<h1 class="fancy-font">I’m<br class="mb-break" /> Drubajyoti<br class="mb-break" /> Debnath</h1>

@@ -3,7 +3,7 @@
 	import Header from "../Header.svelte";
 </script>
 
-<HeadDoc page="/about" />
+<HeadDoc page="/about" title="About me" />
 
 <section class="page">
     <Header changeLinkToHome={2} />

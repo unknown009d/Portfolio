@@ -12,7 +12,13 @@
 	});
 </script>
 
-<a href="#works" class="scroll-down-component" on:click={scrollToContent} id="sdc">
+<a
+	href="#works"
+	class="scroll-down-component"
+	aria-label="Scroll Down to my works"
+	on:click={scrollToContent}
+	id="sdc"
+>
 	<svg
 		width="69"
 		height="102"

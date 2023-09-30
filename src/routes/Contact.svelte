@@ -43,7 +43,12 @@
 		<div class="cd-img"><span class="icon i-lg i-github_lg" /></div>
 		<div class="cd-content">
 			<h5>Github</h5>
-			<a href="https://github.com/unknown009d/" target="_blank" rel="noreferrer" class="txtWrap underline">
+			<a
+				href="https://github.com/unknown009d/"
+				target="_blank"
+				rel="noreferrer"
+				class="txtWrap underline"
+			>
 				{d_github}
 			</a>
 		</div>
@@ -69,7 +74,7 @@
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<div class="cxtras">
 				<p
-					class="txtWrap copied-text underline"
+					class="txtWrap copied-text"
 					on:click={(event) => {
 						copyToClip(event);
 					}}
@@ -77,7 +82,7 @@
 					{d_email}
 				</p>
 				<!-- svelte-ignore a11y-missing-content -->
-				<a href="mailto:{d_email}" class="linkBtn underline">
+				<a href="mailto:{d_email}" aria-label="Open E-Mail" class="linkBtn underline">
 					<span class="icon i-externalLink" />
 				</a>
 			</div>
@@ -90,7 +95,7 @@
 			<div class="cxtras">
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<p
-					class="txtWrap copied-text underline"
+					class="txtWrap copied-text"
 					on:click={(event) => {
 						copyToClip(event);
 					}}
@@ -98,7 +103,9 @@
 					{d_phone}
 				</p>
 				<!-- svelte-ignore a11y-missing-content -->
-				<a href="tel:{d_phone}" class="linkBtn underline"><span class="icon i-externalLink" /></a>
+				<a href="tel:{d_phone}" aria-label="Open Dialer" class="linkBtn underline"
+					><span class="icon i-externalLink" /></a
+				>
 			</div>
 		</div>
 	</div>
@@ -184,7 +191,7 @@
 		/* border-bottom: 2px dashed rgba(var(--primary-color), 0.4); */
 	}
 	@media only screen and (max-width: 612px) {
-		.underline::after{
+		.underline::after {
 			display: none;
 		}
 		.cd-container .cd-item .cd-content a {

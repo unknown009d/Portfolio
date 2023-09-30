@@ -63,11 +63,11 @@
 	<div class="end">
 		<p>
 			Let's&nbsp;connect&nbsp;on
-			<a href={mgithub} target="_blank" rel="noreferrer">
+			<a href={mgithub} target="_blank" rel="noreferrer" aria-label="Open Github Profile" >
 				<span class="icon i-github" />
 			</a>
 			/
-			<a href={mlinkedin} target="_blank" rel="noreferrer">
+			<a href={mlinkedin} target="_blank" rel="noreferrer" aria-label="Open Linkedin Profile">
 				<span class="icon i-linkedin" />
 			</a>
 		</p>

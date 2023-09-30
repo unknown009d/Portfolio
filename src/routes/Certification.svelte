@@ -28,6 +28,8 @@
 			<button
 				class="scroll-btns"
 				data-tooltip="Previous"
+				aria-label="Previous Button for Certificates"
+				aria-labelledby="Previous Button in Certificates"
 				on:click={(event) => {
 					event.target.parentNode.parentNode.scrollLeft -= 250;
 				}}
@@ -44,6 +46,8 @@
 			<button
 				class="scroll-btns"
 				data-tooltip="Next"
+				aria-label="Next Button for Certificates"
+				aria-labelledby="Next Button in Certificates"
 				on:click={(event) => {
 					event.target.parentNode.parentNode.scrollLeft += 250;
 				}}

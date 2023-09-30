@@ -20,7 +20,7 @@
 	<div class="education p-padding" tabindex="0">
 		<SectionH
 			heading="Academic Experience"
-			sub="Educational background in a reverse-chronological order"
+			sub="Highlighting my Educational Journey..."
 		/>
 		<div class="school-container">
 			{#each schoolsData as sData (sData.id)}

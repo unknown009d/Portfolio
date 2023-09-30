@@ -6,7 +6,7 @@
 	export let hueRotate = 0;
 </script>
 
-<div class="skills" style="filter: hue-rotate({hueRotate * 45}deg);">
+<div class="skills" style="filter: hue-rotate({hueRotate * 45}deg) contrast(120%) saturate(120%);">
 	<p class="skills-name">{name}</p>
 	<p class="skills-level">{level}</p>
 </div>

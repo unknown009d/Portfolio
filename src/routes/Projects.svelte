@@ -44,12 +44,12 @@
 >
 	<div class="image-container">
 		{#each projectsShowcase[0].projects as data}
-			<div class="image"><img src="{data.image}" alt="{projectsShowcase.name}" /></div>
+			<div class="image"><img src="{data.image}" alt="{data.name}" /></div>
 		{/each}
 	</div>
 	<div class="image-container">
 		{#each projectsShowcase[1].projects as data}
-			<div class="image"><img src="{data.image}" alt="{projectsShowcase.name}" /></div>
+			<div class="image"><img src="{data.image}" alt="{data.name}" /></div>
 		{/each}
 	</div>
 </div>

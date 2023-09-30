@@ -34,7 +34,9 @@
 				“Learning is a never ending journey”
 				<!-- <small>- <abbr title="I don't know">idk</abbr> who said this</small> -->
 				<span
-					style="transform: translateX({initialValue - parallexAmount * scrolled}px);"
+					style="
+						transform: translateX({initialValue - parallexAmount * scrolled}px);
+					"
 					class="backdropText"
 				>
 					SKILLS
@@ -105,7 +107,18 @@
 		font-style: normal;
 		font-weight: 900;
 		z-index: -1;
-		opacity: 0.016;
+		background: -webkit-linear-gradient(
+			rgba(var(--primary-color), 0) 25%,
+			rgba(var(--primary-color), 0.2)
+		);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		opacity: 0.4;
+	}
+	@media only screen and (max-width: 612px) {
+		.skills-container .skills-content .quote .backdropText {
+			transition: transform 200ms ease;
+		}
 	}
 	.fancy-h {
 		font-size: 4.5rem;

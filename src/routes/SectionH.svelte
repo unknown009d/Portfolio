@@ -4,7 +4,7 @@
 </script>
 
 <h2 class="fancy-font fancy-h">{heading}</h2>
-<h4 class="fancy-sub">{sub}</h4>
+<p class="fancy-sub">{sub}</p>
 
 <style>
 </style>
