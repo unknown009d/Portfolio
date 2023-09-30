@@ -9,7 +9,7 @@
 	onMount(async () => {
 		let aboutText = `
 		An introvert developer with a focus on elevating better User Interface / Experience, I strive to bring
-		ideas to life through technology. Pursuing a B.Tech in Computer Science & Engineering. My
+		ideas to life through technology. Pursuing B.Tech in Computer Science and Engineering. My
 		commitment to continuous learning and exploration of new technologies, paired with my passion
 		for <abbr title="Free and Open-Source Software">FOSS</abbr> enables me to bring unique and impactful solutions to the
 		table. btw, I use Arch.
@@ -44,7 +44,6 @@
 		position: relative;
 	}
 	.normal-heading {
-		font-family: 'Raleway', 'Inter', 'Roboto', sans-serif;
 		font-weight: 800;
 		margin-bottom: 0.4rem;
 		font-size: 3.5rem;

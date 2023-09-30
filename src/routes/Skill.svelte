@@ -17,12 +17,14 @@
 		flex-wrap: wrap;
 		flex-direction: row;
 		justify-content: space-between;
+		/* justify-content: center; */
 		align-items: center;
 		background-color: rgba(var(--primary-color), 0.05);
 		padding: 1rem;
 		position: relative;
 		transition: color 200ms ease-in-out 300ms;
 		overflow: hidden;
+		text-align: left;
 	}
 	.skills::before {
 		content: '';
@@ -30,11 +32,13 @@
 		justify-content: center;
 		align-items: center;
 		position: absolute;
-		top: 0;
+		right: 0;
 		bottom: 0;
 		left: 0;
 		height: 100%;
 		width: 2px;
+		/* height: 2px; */
+		/* width: 100%; */
 		background-color: rgb(var(--primary-color));
 		color: rgb(var(--bg-color));
 		mix-blend-mode: difference;

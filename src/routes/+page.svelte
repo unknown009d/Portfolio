@@ -41,7 +41,7 @@
 <svelte:window bind:scrollY={scrolled} bind:innerWidth={windowSize} />
 
 <HeadDoc />
-
+<div class="load">
 <!-- class:initialized={isLoaded} -->
 <section
 	class="page p-cover"
@@ -74,11 +74,23 @@
 	<Contact />
 </section>
 
+</div>
+
 <style>
 	.projectsPage {
 		margin-top: 3.2rem;
 		padding-bottom: 8rem;
 		overflow: hidden;
+	}
+	@media only screen and (min-width: 1600px){
+		.projectsPage{
+			padding-bottom: 10rem;
+		}
+	}
+	@media only screen and (max-width: 612px){
+		.projectsPage{
+			padding-bottom: 2rem;
+		}
 	}
 	.p-certi {
 		margin-bottom: 3.2rem;

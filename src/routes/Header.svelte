@@ -2,13 +2,19 @@
 	//@ts-nocheck
 	import { onMount } from 'svelte';
 
+	/* 
 	export let dlinks = [
-		{ id: 1, name: 'Projects', url: '/projects' },
-		{ id: 2, name: 'AboutMe', url: '/aboutme' },
-		{ id: 3, name: 'MyResume', url: '/myresume' }
+	 	{ id: 1, name: 'Projects', url: '/projects' }, 
+	 	{ id: 2, name: 'AboutMe', url: '/aboutme' }, 
+	 	{ id: 3, name: 'MyResume', url: '/myresume' }
+	 ]; 
+	*/
+	export let dlinks = [
+		// { id: 1, name: 'Works', url: '/works' },
+		{ id: 1, name: 'Resume', url: '/myresume' }
 	];
 	export let changeLinkToHome = 0;
-	export let homeText = 'home';
+	export let homeText = 'Home';
 	let mgithub, mlinkedin;
 	// let mgithub = 'https://github.com/unknown009d';
 	// let mlinkedin = 'https://linkedin.com/in/drubajyotidebnath';
@@ -45,7 +51,7 @@
 				/>
 			</defs>
 		</svg>
-		<h1>IND</h1>
+		<h1 title="I'm from India">IND</h1>
 	</div>
 	<nav class="mid">
 		{#each dlinks as link, index}
@@ -115,8 +121,8 @@
 		color: rgb(var(--fg-color));
 		text-decoration: none;
 		font-weight: 700;
-		text-transform: uppercase;
-		padding: 0.8rem 1rem;
+		text-transform: capitalize;
+		/* padding: 0.8rem 1rem; */
 		/* border-left: 3px solid rgba(var(--fg-color), 0.6); */
 		/* padding-left: 1rem; */
 		position: relative;
@@ -128,18 +134,24 @@
 		content: '';
 		display: block;
 		position: absolute;
-		margin-top: 2px;
+		bottom: -4px;
+		left: 0;
+		right: 0;
+		margin-top: 0px;
 		width: 0px;
 		height: var(--focus-height);
-		background-color: rgb(var(--primary-color));
+		max-height: 40%; 
+		background-color: rgba(var(--primary-color));
 		transition: var(--focus-transition);
+		transform: translateY(-6px);
+		opacity: 0.4;
 	}
 	.mid a:focus::after,
 	.mid a:hover::after {
-		width: 15px;
+		width: 100%;
 	}
 	.mid .seperator {
-		font-weight: 900;
+		font-weight: 800;
 		color: rgba(var(--fg-color), 0.6);
 		user-select: none;
 		pointer-events: none;
@@ -184,7 +196,7 @@
 	}
 	@media only screen and (max-width: 1190px) {
 		.mid a {
-			padding: 0.4rem;
+			/* padding: 0.4rem; */
 		}
 		.start {
 			flex: 0;
@@ -215,8 +227,6 @@
 		.end p a:hover::before {
 			width: 0;
 		}
-	}
-	@media only screen and (max-width: 450px) {
 		header {
 			align-items: flex-start;
 			position: relative;
@@ -231,7 +241,7 @@
 			display: none;
 		}
 		.mid span.seperator {
-			transform: rotate(90deg) translateY(-15px);
+			transform: rotate(90deg) translateY(-7px);
 		}
 		.end {
 			position: absolute;

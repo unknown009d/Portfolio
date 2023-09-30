@@ -18,10 +18,7 @@
 {#if schoolsData.length > 0}
 	<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 	<div class="education p-padding" tabindex="0">
-		<SectionH
-			heading="Academic Experience"
-			sub="Highlighting my Educational Journey..."
-		/>
+		<SectionH heading="Academic Experience" sub="Highlighting my Educational Journey..." />
 		<div class="school-container">
 			{#each schoolsData as sData (sData.id)}
 				<div class="school">
@@ -96,6 +93,10 @@
 	.school-container .school .school-img {
 		max-width: 90px;
 		background-color: #dbdbdb;
+		border-radius: 4pt;
+		overflow: hidden;
+		box-shadow: 0 0 0px -2px rgba(var(--primary-color), 0);
+		transition: box-shadow 600ms ease;
 	}
 	@media (prefers-color-scheme: light) {
 		.school-container .school .school-img {

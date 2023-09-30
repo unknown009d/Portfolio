@@ -117,7 +117,7 @@
 	}
 	@media only screen and (max-width: 612px) {
 		.skills-container .skills-content .quote .backdropText {
-			transition: transform 200ms ease;
+			transition: transform 50ms ease;
 		}
 	}
 	.fancy-h {
